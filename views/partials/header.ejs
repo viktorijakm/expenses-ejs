@@ -1,10 +1,28 @@
 <h1>The List EJS Application</h1>
+
+<% if (user) { %>
+  <p>User <%= user.username || user.email || 'Guest' %> is logged on.</p> <!-- Display the username or email if user is logged in -->
+  <form method="POST" action="/sessions/logoff">
+    <button>Logoff</button>
+  </form>
+<% } else { %>
+  <p>Welcome, Guest. Please log in or register.</p>
+<% } %>
+
+<% if (errors && errors.length > 0) { 
+  errors.forEach((err) => { %>
+    <div>
+      Error: <%= err %>
+    </div>
+  <% }) 
+} %>
+
+<% if (info && info.length > 0) { 
+  info.forEach((msg) => { %>
+    <div>
+      Info: <%= msg %>
+    </div>
+  <% })
+} %>
+
 <hr />
-<% if (errors) {
-    errors.forEach((err) => { %>
-      <div>Error: <%= err %></div>
-  <% }) } %>
-  <% if (info) {
-    info.forEach((msg) => { %>
-      <div>Info: <%= msg %></div>
-  <% }) } %>
